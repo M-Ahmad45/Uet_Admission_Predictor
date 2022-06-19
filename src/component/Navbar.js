@@ -42,24 +42,18 @@ function Navbar() {
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>
-          UET Admission Predictor
+          Admission Predictor
           
         </Typography>
         {isMobile ? (
           <DrawerComponent />
         ) : (
           <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
             <Link to="/about" className={classes.link}>
               About
             </Link>
             <Link to="/contact" className={classes.link}>
-              Contact
-            </Link>
-            <Link to="/faq" className={classes.link}>
-              FAQ
+              Contact Us
             </Link>
           </div>
         )}
