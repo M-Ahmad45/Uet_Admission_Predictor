@@ -15,7 +15,7 @@ const Result = ({chance}) => {
 
   return (
     <div style={div_style}>
-        <div style={{marginTop:25, marginLeft:25, width:50}}>{chance}%</div>
+        <div style={{marginTop:30, marginLeft:25, width:50}}>{chance}%</div>
     </div>
   )
 }
