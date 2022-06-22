@@ -3,20 +3,27 @@ import {
   makeStyles,
   useTheme,
   useMediaQuery,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  sideNav: {
-    marginTop: '-60px',
-    zIndex: 3,
-    marginLeft: '0px',
-    position: 'fixed',
-  },
   navbar: {
+    transition: "all 0.5s ease-in-out",
     overflow: "hidden",
     width: "100%",
     height: "100px",
+    position: "sticky",
+    backgroundColor: "#f9f9f9",
+  },
+  toggled_navbar: {
+    transition: "all 0.5s ease-in-out",
+    overflow: "hidden",
+    width: "100%",
+    height: "400px",
     position: "sticky",
     backgroundColor: "#f9f9f9",
   },
@@ -41,7 +48,25 @@ const useStyles = makeStyles((theme) => ({
       color: "#2668aa",
     },
   },
-  nav_ent_mob: {
+  navbar_toggle: {
+      border: "3px solid transparent",
+      position: "fixed",
+      right: "6%",
+      top: "40px",
+      borderRadius: "4px",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "black",
+      },
+    },
+  icon_bar: {
+      width: "25px",
+      backgroundColor: "#686868",
+      height: "3px",
+      margin: "5px 4px",
+      borderRadius: "5px",
+  },
+  tog_ent: {
     float: "right",
     display: "block",
     color: "#686868",
@@ -53,46 +78,53 @@ const useStyles = makeStyles((theme) => ({
       color: "#2668aa",
     },
   },
-  navbar_toggle: {
-      border: "3px solid transparent",
-      position: "fixed",
-      right: "6%",
-      top: "40px",
-      cursor: "pointer",
-  },
-  icon_bar: {
-      width: "25px",
-      backgroundColor: "#686868",
-      height: "3px",
-      margin: "5px 4px",
-      borderRadius: "5px",
-  },
 }));
+
+function toggle() {
+  let x = document.getElementById("navbar");
+  if (x.className === "makeStyles-navbar-1") {
+    x.className = "makeStyles-toggled_navbar-2"
+  }
+  else {
+      x.className = "makeStyles-navbar-1";
+  }
+}
 
 function Navbar() {
   const styles = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  // function toggle() {
-  //   let x = document.getElementById("navbar");
-  //   if (x.className === "navbar") {
-  //       x.className += "_toggle";
-  //   }
-  //   else {
-  //       x.className = "navbar";
-  //   }
-  // }
-
   return (
     <nav>
       {isMobile ? (
           <nav className={styles.navbar} id="navbar">
-            <div className={styles.navbar_toggle}>
+            <Link to="/" className={styles.logo}>
+              <img className={styles.logo} src={require("./logo.png")} alt="logo"/>
+            </Link>
+            <div className={styles.navbar_toggle} onClick={toggle}>
               <div className={styles.icon_bar}></div>
               <div className={styles.icon_bar}></div>
               <div className={styles.icon_bar}></div>
             </div>
+            <Drawer
+              variant="temporary"
+            >
+              <Link to='/about' style={styles.tog_ent}>
+                <List>
+                  <ListItem button key='About Us'>
+                    <ListItemText primary='About Us' />
+                  </ListItem>
+                </List>
+              </Link>
+              <Link to='/contact' style={styles.tog_ent}>
+              <List>
+                <ListItem button key='Contact Us'>
+                  <ListItemText primary='Contact Us' />
+                </ListItem>
+                </List>
+              </Link>
+            </Drawer>
           </nav>
         ) : (
           <nav className={styles.navbar} id="navbar">
