@@ -3,10 +3,6 @@ import {
   makeStyles,
   useTheme,
   useMediaQuery,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -16,14 +12,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     width: "100%",
     height: "100px",
-    position: "sticky",
-    backgroundColor: "#f9f9f9",
-  },
-  toggled_navbar: {
-    transition: "all 0.5s ease-in-out",
-    overflow: "hidden",
-    width: "100%",
-    height: "400px",
     position: "sticky",
     backgroundColor: "#f9f9f9",
   },
@@ -49,29 +37,55 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navbar_toggle: {
-      border: "3px solid transparent",
-      position: "fixed",
-      right: "6%",
-      top: "40px",
-      borderRadius: "4px",
-      cursor: "pointer",
-      "&:hover": {
-        backgroundColor: "black",
-      },
+    border: "3px solid transparent",
+    position: "fixed",
+    right: "6%",
+    top: "40px",
+    borderRadius: "4px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "black",
     },
+  },
   icon_bar: {
-      width: "25px",
-      backgroundColor: "#686868",
-      height: "3px",
-      margin: "5px 4px",
-      borderRadius: "5px",
+    width: "25px",
+    backgroundColor: "#686868",
+    height: "3px",
+    margin: "5px 4px",
+    borderRadius: "5px",
+  },
+  toggle_navbar: {
+    transition: "all 0.5s ease-in-out",
+    overflow: "hidden",
+    width: "100%",
+    height: "100px",
+    position: "sticky",
+    backgroundColor: "#f9f9f9",
+  },
+  toggled_navbar: {
+    transition: "all 0.5s ease-in-out",
+    overflow: "hidden",
+    width: "100%",
+    height: "350px",
+    position: "sticky",
+    backgroundColor: "#f9f9f9",
+  },
+  toggle_logo: {
+    cursor: "pointer",
+    width: "134px",
+    height: "90px",
+    marginTop: "2px",
+    marginLeft: "5%",
+    marginRight: "40px",
+    float: "none",
   },
   tog_ent: {
-    float: "right",
-    display: "block",
+    float: "none",
+    display: "none",
+    textAlign: "left",
     color: "#686868",
-    marginTop: "30px",
-    marginRight: "140px",
+    marginTop: "40px",
+    marginLeft: "5%",
     textDecoration: "none",
     fontSize: "30px",
     "&:hover": {
@@ -81,13 +95,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function toggle() {
-  let x = document.getElementById("navbar");
-  if (x.className === "makeStyles-navbar-1") {
-    x.className = "makeStyles-toggled_navbar-2"
-  }
+  let x = document.getElementById("toggle_navbar");
+  let ent = document.getElementsByClassName("makeStyles-tog_ent-9");
+  if (x.className === "makeStyles-toggle_navbar-6") {
+    x.className = "makeStyles-toggled_navbar-7";
+    for (let i = 0; i < 3; i++) { ent[i].style.display = "block"; }}
   else {
-      x.className = "makeStyles-navbar-1";
-  }
+    x.className = "makeStyles-toggle_navbar-6";
+    for (let i = 0; i < 3; i++) { ent[i].style.display = "none"; }}
 }
 
 function Navbar() {
@@ -98,33 +113,20 @@ function Navbar() {
   return (
     <nav>
       {isMobile ? (
-          <nav className={styles.navbar} id="navbar">
-            <Link to="/" className={styles.logo}>
-              <img className={styles.logo} src={require("./logo.png")} alt="logo"/>
-            </Link>
+          <nav className={styles.toggle_navbar} id="toggle_navbar">
             <div className={styles.navbar_toggle} onClick={toggle}>
               <div className={styles.icon_bar}></div>
               <div className={styles.icon_bar}></div>
               <div className={styles.icon_bar}></div>
             </div>
-            <Drawer
-              variant="temporary"
-            >
-              <Link to='/about' style={styles.tog_ent}>
-                <List>
-                  <ListItem button key='About Us'>
-                    <ListItemText primary='About Us' />
-                  </ListItem>
-                </List>
+            <div>
+              <Link to="/" className={styles.toggle_logo} id="logo">
+                <img className={styles.toggle_logo} src={require("./logo.png")} alt="logo"/>
               </Link>
-              <Link to='/contact' style={styles.tog_ent}>
-              <List>
-                <ListItem button key='Contact Us'>
-                  <ListItemText primary='Contact Us' />
-                </ListItem>
-                </List>
-              </Link>
-            </Drawer>
+              <Link to="/about" className={styles.tog_ent} id="toggled">About</Link>
+              <Link to="/contact" className={styles.tog_ent} id="toggled">Contact Us</Link>
+              <Link to="/faq" className={styles.tog_ent} id="toggled">FAQ</Link>
+            </div>
           </nav>
         ) : (
           <nav className={styles.navbar} id="navbar">
