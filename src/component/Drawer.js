@@ -45,11 +45,7 @@ const classes = useStyles();
               <Link to="/contact">Contact</Link>
             </ListItemText>
           </ListItem>
-          <ListItem onClick={() => setOpenDrawer(false)}>
-            <ListItemText>
-              <Link to="/about">Faq</Link>
-            </ListItemText>
-          </ListItem>
+          
         </List>
       </Drawer>
       <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
