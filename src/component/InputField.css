@@ -1,0 +1,23 @@
+.inputComponent{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.predictBtn{
+     color: white;
+     background-color: green;
+     border-color: transparent ;
+     font-size:25px;
+     font-weight: 20;
+     border-radius: 5px;
+     font-family:Roboto;
+     width: 34vw;
+     max-width: 400px;
+}
+.predictBtn:hover{
+    transition: 100ms transform ease-in;
+    transform: scale(1.02);
+    background-image: linear-gradient( green , darkgreen);
+}
