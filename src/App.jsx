@@ -1,12 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./component/Navbar";
-import Quote from "./component/Quote";
 function App() {
   return (
     <Router>
       <Navbar />
-      <Quote />
+      <Routes>
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </Router>
   );
 }
