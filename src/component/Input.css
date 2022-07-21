@@ -1,0 +1,23 @@
+.inputBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    max-width: 100%;
+    font-family: Roboto;
+    height: 100vh;
+
+}
+
+.container{
+    color: white;
+    background-image: linear-gradient( lightgray , whitesmoke);
+    margin: auto;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    height: 60vh;
+    width: 30vw;
+    box-shadow:5px 10px lightgray;
+    padding-top: 130px;
+    min-width: 18em;
+}
